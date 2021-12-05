@@ -7,6 +7,7 @@
 #define PRMTSIZ 255
 #define MAXARGS 63
 #define EXITCMD "exit"
+#define CHDIRCMD "cd"
 
 int main(void) {
     for (;;) {
@@ -32,6 +33,10 @@ int main(void) {
 
         // built-in: exit
         if (strcmp(EXITCMD, args[0]) == 0) return 0;
+        if (strcmp(CHDIRCMD, args[0]) == 0) {
+            chdir(args[1]);
+            continue;
+        }
 
         // fork child and execute program
         signal(SIGINT, SIG_DFL);
