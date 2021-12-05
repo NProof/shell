@@ -8,6 +8,8 @@
 #define MAXARGS 63
 #define EXITCMD "exit"
 
+char cwd[256];
+
 int main(void) {
     for (;;) {
         char input[PRMTSIZ + 1] = { 0x0 };
@@ -16,6 +18,7 @@ int main(void) {
         int wstatus;
 
         // prompt
+        printf("%s", getcwd(cwd, sizeof(cwd)));
         printf("%s ", getuid() == 0 ? "#" : "$");
         fgets(input, PRMTSIZ, stdin);
 
