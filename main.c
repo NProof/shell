@@ -8,6 +8,7 @@
 #define MAXARGS 63
 #define EXITCMD "exit"
 #define CHDIRCMD "cd"
+#define PWDRCMD "pwd"
 #define ECHORCMD "echo"
 
 char cwd[256];
@@ -40,12 +41,17 @@ int main(void) {
         if (strcmp(CHDIRCMD, args[0]) == 0) {
             chdir(args[1]);
             continue;
-        }if (strcmp(ECHORCMD, args[0]) == 0) {
+        }
+        if (strcmp(ECHORCMD, args[0]) == 0) {
             for(char *pc = args[1]; pc < ptr; ++pc) {
                 putchar(*pc == '\0' ? ' ' : *pc);
             }
             // putchar('$');
             putchar('\n');
+            continue;
+        }
+        if (strcmp(PWDRCMD, args[0]) == 0) {
+            printf("%s\n", cwd);
             continue;
         }
 
